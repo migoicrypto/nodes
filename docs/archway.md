@@ -137,6 +137,8 @@ You need to install and sync your node before run a validator.
     # Run this command if you run node first time to CREATE NEW wallet
     archwayd keys add $WALLET
     # ***Backup the Archway wallet address, mnemonic and password carefully***
+    # The mnemonic seed phrase are the line below of line 
+    # "**Important** write this mnemonic phrase in a safe place. It is the only way to recover your account if you ever forget your password."
 
     # Run this command if you already have wallet and mnemonic to RESTORE OLD wallet 
     archwayd keys add $WALLET --recover
