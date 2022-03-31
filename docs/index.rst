@@ -7,6 +7,7 @@ Welcome to Nodes Migoi Crypto's documentation!
 ==============================================
 
 .. toctree::
+   archway.md
    :maxdepth: 2
    :caption: Contents:
 
