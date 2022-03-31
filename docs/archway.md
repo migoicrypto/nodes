@@ -86,11 +86,11 @@ You need to install and sync your node before run a validator.
 
     sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
 
-    curl -s "https://nodes.migoi.io/_static/archway/archway_genesis.json" | jq '.result.genesis' > ~/.archway/config/genesis.json
+    curl -s "https://nodes.migoi.io/en/latest/_static/archway/archway_genesis.json" | jq '.result.genesis' > ~/.archway/config/genesis.json
 
     docker run --rm -it -v $HOME/.archway:/root/.archway archwaynetwork/archwayd:augusta unsafe-reset-all
 
-    wget -O addrbook.json https://api.nodes.guru/addrbook_archway.json
+    wget -O addrbook.json https://nodes.migoi.io/en/latest/_static/archway/addrbook_archway.json
 
     mv addrbook.json $HOME/.archway/config/
 
