@@ -36,13 +36,20 @@ The protocol gives developers the tools to quickly build and launch scalable cro
 1. Need a server to run. You can use either your local server or buy a VPS/VDS from some public cloud services:  
     [Contabo](https://contabo.com/en/vps/) | [Vultr](https://www.vultr.com/?ref=9092122) | [DigitalOcean](https://www.digitalocean.com/?refcode=6c9338218bd0) | [Hetzner](https://www.hetzner.com/cloud)
 
-    Note: I am using CentOS 7 (or higher) in this guide so if your use other OS, please find a alternative suitable commands if needed.
+    Note: I am using CentOS 7 (or higher) in this guide so if you are using other OS, please find a alternative commands if needed.
 
 2. After startup your server, then you need to use ssh potocol to access your server. If you don't know how to use ssh, you can refer to use Putty from [this tutorial](https://www.hostinger.com/tutorials/how-to-use-putty-ssh).
 
-3. Install docker  
-    We need to install docker on your server to run node.  
-    3.1 [Install Docker Guide](https://docs.docker.com/engine/install/centos/)  
+3. Install some libraries/services   
+    3.1 Install jq
+    ```sh
+    yum install epel-release -y
+
+    yum update -y
+
+    yum install jq -y
+    ```
+    3.1 Install docker to run node -> [Install Docker Guide](https://docs.docker.com/engine/install/centos/)  
     3.2 [Post-Docker-Install Steps](https://docs.docker.com/engine/install/linux-postinstall/)
 
 ### II. Install & Sync Node  
@@ -145,9 +152,9 @@ You need to install and sync your node before run a validator.
 ### III. Create a Validator  
 If your node is fully-synchronized, then you can continue this step.
 
-    ```sh
-    # After you get some $august token and node is fully-synchronized, run this command to delegate some token from your wallet to your node.
-    archwayd tx staking create-validator \
+```sh
+# After you get some $august token and node is fully-synchronized, run this command to delegate some token from your wallet to your node.
+archwayd tx staking create-validator \
     --amount 9000000uaugust \
     --from $WALLET \
     --commission-max-change-rate "0.01" \
@@ -160,9 +167,9 @@ If your node is fully-synchronized, then you can continue this step.
     --gas 300000 \
     --fees 3uaugust
 
-    # Run this command to get YOUR_ARCHWAY_VALIDATOR_ADDRESS
-    archwayd keys show $WALLET --bech val -a
+# Run this command to get YOUR_ARCHWAY_VALIDATOR_ADDRESS
+archwayd keys show $WALLET --bech val -a
 
-    # If you wan to stake more token to your node, run this command:
-    archwayd tx staking delegate INPUT_YOUR_ARCHWAY_VALIDATOR_ADDRESS 10000000uaugust --from $WALLET --chain-id $CHAIN_ID --fees 5000uaugust
-    ```
+# If you wan to stake more token to your node, run this command:
+archwayd tx staking delegate INPUT_YOUR_ARCHWAY_VALIDATOR_ADDRESS 10000000uaugust --from $WALLET --chain-id $CHAIN_ID --fees 5000uaugust
+```
