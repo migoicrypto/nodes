@@ -63,7 +63,7 @@ You need to install and sync your node before run a validator.
 
     echo 'export CHAIN_ID='augusta-1 >> $HOME/.bash_profile
 
-    source ~/.bashrc
+    source ~/.bash_profile
 
     # Cleanup: Remove old genesis.json if existed
     rm -f ~/.archway/config/genesis.json
@@ -98,7 +98,7 @@ You need to install and sync your node before run a validator.
 
     echo "alias archwayd='docker exec -it archway archwayd'" >> $HOME/.bash_profile
 
-    source ~/.bashrc
+    source ~/.bash_profile
     ```
 
     Now your node is running and in sync with the blockchain to get the latest block heigh. You need to wait few hours to node fully synchronized-up.  
