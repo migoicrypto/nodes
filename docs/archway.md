@@ -15,7 +15,7 @@ The protocol gives developers the tools to quickly build and launch scalable cro
     - [x] **Non-incentived Community Testnet**
     - [ ] **Incentived Community Testnet**
 
-- Rating: Promising
+- Rating: Positive
 - Date: N/A
 - Rewards: N/A
 - Vesting: N/A
@@ -108,7 +108,7 @@ You need to install and sync your node before run a validator.
     source ~/.bash_profile
     ```
 
-    Now your node is running and in sync with the blockchain to get the latest block heigh. You need to wait few hours to node fully synchronized-up.  
+    Now your node is running and in sync with the blockchain to get the latest block heigh. You need to wait few hours to fully synchronized-up.  
 
     **Carefully: Do not go to step-III if your node is not fully synchronized!**
 

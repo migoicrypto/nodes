@@ -8,6 +8,8 @@ Welcome to Nodes Migoi Crypto's documentation!
 
 .. toctree::
    archway.md
+   subspace.md
+   chainflip.md
    :maxdepth: 2
    :caption: Contents:
 
