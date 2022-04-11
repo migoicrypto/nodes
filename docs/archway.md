@@ -247,10 +247,8 @@ You need to install and sync your node before run a validator.
         wget https://raw.githubusercontent.com/archway-network/testnets/main/torii-1/penultimate_genesis.json
         cp penultimate_genesis.json $HOMEDIR/config/genesis.json
         ```
-        
-
-    ## Add key to your client keystore and fund account:
-
+    
+    **Add key to your client keystore and fund account:**
     1. Create a new key via the following command. Please note that the key will be stored in keystore configured by you earlier.
         
         ```bash
@@ -265,7 +263,7 @@ You need to install and sync your node before run a validator.
         archwayd add-genesis-account $(archwayd keys show $WALLET_NAME -a --home $HOMEDIR)  10001000utorii --home $HOMEDIR
         ```
 
-    ## Add yourself as validator in genesis:
+    **Add yourself as validator in genesis:**
     1. Create a `gentx` which contains the `MsgCreateValidator`:
         
         ```bash
@@ -289,7 +287,6 @@ You need to install and sync your node before run a validator.
         # On your node server, run command to create new ssh key
         ssh-keygen -t ed25519 -C "your_mail@xyz.mail"
         
-        eval "$(ssh-agent -s)"
         # Replace id_XXXXXXX.pub with your ssh file
         cat /root/.ssh/id_XXXXXXX.pub
 
@@ -301,6 +298,7 @@ You need to install and sync your node before run a validator.
         ```bash
         # on node server:
         # Replace id_XXXXXXX with your ssh file
+        eval "$(ssh-agent -s)"
         ssh-add /root/.ssh/id_XXXXXXX
 
         # do change CHANGE_TO_YOUR_GITHUB_ACCOUNT
@@ -313,16 +311,16 @@ You need to install and sync your node before run a validator.
         git push
         ```
         
-    3. Open up a PR to the [archway-network/testnets](https://github.com/archway-network/testnets) repository and wait for it to be merged.
+    3. Open up a PR to the [archway-network/testnets](https://github.com/archway-network/testnets) repository and wait for it to be merged.  
     Go to the archway testnet repo on your github account, click on Pull Requests tab,  click ***New Pull Request*** button, you can see there is a gentx file (the name is same as your in above steps), click ***Create Pull Request*** button, put some note and click ***Create Pull Request*** button to submit PR.  
     Now you can wait until 12PM 12/Apr to continue on next step.
 
     4. After the `gentx` submission window is passed, you need to get `final_genesis.json` from  [archway-network/testnets](https://github.com/archway-network/testnets) repository and replace the `genesis.json` in `$HOMEDIR` Please run below commands in same directory as Step 2.
-        
+            
         ```bash
         rm -rf testnets
         git clone git@github.com:archway-network/testnets.git
         cp testnets/torii-1/final_genesis.json $HOMEDIR/config/genesis.json
         ```
-        
+            
 3. [Start your node](https://www.notion.so/Start-your-full-node-b0ce46f1228648bc99eaedeff5dd3fd5)
