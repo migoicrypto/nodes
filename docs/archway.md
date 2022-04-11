@@ -13,11 +13,14 @@ The protocol gives developers the tools to quickly build and launch scalable cro
 - Status: 
     - [x] **Dev Testnet**
     - [x] **Non-incentived Community Testnet**
-    - [ ] **Incentived Community Testnet**
+    - [x] **[Incentived Community Testnet](https://philabs.notion.site/philabs/Archway-Incentivized-Testnet-Torii-1-9e70a8f431c041618c6932e70d46ccdd)**
 
-- Rating: Positive
-- Date: N/A
-- Rewards: N/A
+- Rating: Guarantee
+- Date Start: April 11 2022
+- Winners Notified: May 30
+- Identity Form Available: Identity Form Available
+- Identity Verification Deadline: June 20
+- Rewards Distribution: Mainnet Launch
 - Vesting: N/A
 
 
@@ -30,7 +33,7 @@ The protocol gives developers the tools to quickly build and launch scalable cro
 - Storage size for validators depends on level of pruning.
 
 ----------
-## Setup Guide
+## Augusta Setup Guide
 
 ### I. Preparation
 1. Need a server to run. You can use either your local server or buy a VPS/VDS from some public cloud services:  
@@ -175,3 +178,151 @@ archwayd keys show $WALLET --bech val -a
 # If you wan to stake more token to your node, run this command:
 archwayd tx staking delegate INPUT_YOUR_ARCHWAY_VALIDATOR_ADDRESS 10000000uaugust --from $WALLET --chain-id $CHAIN_ID --fees 5000uaugust
 ```
+
+----------
+## Torii Setup Guide
+This tutorial is used for the [Run a Genesis Validator](https://philabs.notion.site/Run-a-Genesis-Validator-f54af825e48f488cb12c0440f738e9fb) challenge.  
+For other challenges, you can check it on https://philabs.notion.site/Testnet-Challenges-9449524d909c4831ac303ed485194b16
+
+### I. Preparation
+1. Need a server to run. You can use either your local server or buy a VPS/VDS from some public cloud services:  
+    [Contabo](https://contabo.com/en/vps/) | [Vultr](https://www.vultr.com/?ref=9092122) | [DigitalOcean](https://www.digitalocean.com/?refcode=6c9338218bd0) | [Hetzner](https://www.hetzner.com/cloud)
+
+    Note: I am using CentOS 7 (or higher) in this guide so if you are using other OS, please find a alternative commands if needed.
+
+2. After startup your server, then you need to use ssh potocol to access your server. If you don't know how to use ssh, you can refer to use Putty from [this tutorial](https://www.hostinger.com/tutorials/how-to-use-putty-ssh).
+
+3. Install some libraries/services   
+    3.1 Install needed library
+    ```sh
+    yum install epel-release -y
+
+    yum update -y
+
+    yum install jq -y
+
+    yum install git
+
+    yum group install "Development Tools"
+
+    ```
+
+### II. Install & Sync Node  
+You need to install and sync your node before run a validator.  
+**Note**: Must finish step 1 and 2 durring 12PM 11/Apr - 12PM 12/Apr.
+
+1. [Install Archway binary](https://www.notion.so/Install-Archway-binary-3340b0901cff4bd099288d309a63c28f)
+    1. Retrieve the source code
+    
+        ```bash
+        git clone https://github.com/archway-network/archway
+        cd archway
+        git checkout main
+        ```
+    2. Install archwayd binary
+        ```bash
+        make install
+
+        # Wait few minutes to install archwayd binary, then you can try `archwayd --help` to check. if ok, will show something as "Archway Daemon (server)"
+        archwayd --help
+        ```
+
+2. [Set up your node pre-genesis](https://www.notion.so/Configure-your-validator-pre-genesis-6fcdbd34302c489dbd4c2611ebbc63d5)
+
+    1. Initialize data in daemon’s home directory:
+        
+        ```bash
+        mkdir $HOME/.archway
+        echo 'export HOMEDIR='$HOME/.archway >> $HOME/.bash_profile
+        echo 'export NODE_NAME='INPUT_YOUR_NODE_NAME >> $HOME/.bash_profile
+        echo 'export WALLET_NAME='INPUT_YOUR_WALLET_NAME >> $HOME/.bash_profile
+        source $HOME/.bash_profile
+
+        archwayd init $NODE_NAME --chain-id torii-1 --home $HOMEDIR
+        ```
+        
+    2. Download genesis from [https://raw.githubusercontent.com/archway-network/testnets/main/torii-1/penultimate_genesis.json](https://raw.githubusercontent.com/archway-network/testnets/main/torii-1/penultimate_genesis.json) and copy it in the `$HOMEDIR` 
+        
+        ```bash
+        wget https://raw.githubusercontent.com/archway-network/testnets/main/torii-1/penultimate_genesis.json
+        cp penultimate_genesis.json $HOMEDIR/config/genesis.json
+        ```
+        
+
+    ## Add key to your client keystore and fund account:
+
+    1. Create a new key via the following command. Please note that the key will be stored in keystore configured by you earlier.
+        
+        ```bash
+        archwayd keys add $WALLET_NAME --home $HOMEDIR
+            #Enter keyring passphrase:
+            ## input the passphrase in the terminal
+        ```
+        
+    2. Add your account in genesis with some funds:
+    **Note:** Validator tokens for genesis should be 10000000utorii
+        ```bash
+        archwayd add-genesis-account $(archwayd keys show $WALLET_NAME -a --home $HOMEDIR)  10001000utorii --home $HOMEDIR
+        ```
+
+    ## Add yourself as validator in genesis:
+    1. Create a `gentx` which contains the `MsgCreateValidator`:
+        
+        ```bash
+        archwayd gentx $WALLET_NAME 10000000utorii \
+        --commission-rate 0.1 \
+        --commission-max-rate 0.1 \
+        --commission-max-change-rate 0.1 \
+        --note 'MsgCreateValidator' \
+        --pubkey $(archwayd tendermint show-validator --home $HOMEDIR) \
+        --home $HOMEDIR \
+        --chain-id torii-1
+            #Enter keyring passphrase: [input your passphrase when you add the wallet above]
+            #Genesis transaction written to "/root/.archway/config/gentx/gentx-xxxxxxxxxxxxx.json" <- we will need to submit this file to the testnet github repo
+        ```
+        
+        
+    2.  Submit PR to [archway-network/testnets](https://github.com/archway-network/testnets) repository  
+        now go to https://github.com/, login to your account and go to https://github.com/archway-network/testnets.git, click on ***Fork*** button.  
+        Now you go back to your github account, you can see the Archway testnets repo inside your github account.   
+        ```bash
+        # On your node server, run command to create new ssh key
+        ssh-keygen -t ed25519 -C "your_mail@xyz.mail"
+        
+        eval "$(ssh-agent -s)"
+        # Replace id_XXXXXXX.pub with your ssh file
+        cat /root/.ssh/id_XXXXXXX.pub
+
+        # copy the content then paste to next step `ssh-ed25519 XXXXXXXXYYYYYYYYYZZZZZZZZZ your_mail@xyz.mail`
+
+        ```
+        Then you need to add ssh key to your github account to submit file. Go to https://github.com/settings/keys, click ***New SSH Key*** button and paste the ssh key content that you get above step.
+
+        ```bash
+        # on node server:
+        # Replace id_XXXXXXX with your ssh file
+        ssh-add /root/.ssh/id_XXXXXXX
+
+        # do change CHANGE_TO_YOUR_GITHUB_ACCOUNT
+        git clone git@github.com:CHANGE_TO_YOUR_GITHUB_ACCOUNT/testnets.git testnets
+        mkdir -p testnets/torii-1/gentx/
+        cp $HOMEDIR/config/gentx/*.json testnets/torii-1/gentx/
+        cd ./testnets
+        git add .
+        git commit -m 'add gentx file'
+        git push
+        ```
+        
+    3. Open up a PR to the [archway-network/testnets](https://github.com/archway-network/testnets) repository and wait for it to be merged.
+    Go to the archway testnet repo on your github account, click on Pull Requests tab,  click ***New Pull Request*** button, you can see there is a gentx file (the name is same as your in above steps), click ***Create Pull Request*** button, put some note and click ***Create Pull Request*** button to submit PR.  
+    Now you can wait until 12PM 12/Apr to continue on next step.
+
+    4. After the `gentx` submission window is passed, you need to get `final_genesis.json` from  [archway-network/testnets](https://github.com/archway-network/testnets) repository and replace the `genesis.json` in `$HOMEDIR` Please run below commands in same directory as Step 2.
+        
+        ```bash
+        rm -rf testnets
+        git clone git@github.com:archway-network/testnets.git
+        cp testnets/torii-1/final_genesis.json $HOMEDIR/config/genesis.json
+        ```
+        
+3. [Start your node](https://www.notion.so/Start-your-full-node-b0ce46f1228648bc99eaedeff5dd3fd5)
