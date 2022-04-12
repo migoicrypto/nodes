@@ -313,6 +313,7 @@ You need to install and sync your node before run a validator.
         
     3. Open up a PR to the [archway-network/testnets](https://github.com/archway-network/testnets) repository and wait for it to be merged.  
     Go to the archway testnet repo on your github account, click on Pull Requests tab,  click ***New Pull Request*** button, you can see there is a gentx file (the name is same as your in above steps), click ***Create Pull Request*** button, put some note and click ***Create Pull Request*** button to submit PR.  
+    ***Go to [form](https://docs.google.com/forms/d/e/1FAIpQLScAWscjXibUoBoyua7GLSUFIfhhWGRoRAgLHsSfQHejPyMSgQ/viewform) to fillout the form.  
     Now you can wait until 12PM 12/Apr to continue on next step.
 
     4. After the `gentx` submission window is passed, you need to get `final_genesis.json` from  [archway-network/testnets](https://github.com/archway-network/testnets) repository and replace the `genesis.json` in `$HOMEDIR` Please run below commands in same directory as Step 2.
