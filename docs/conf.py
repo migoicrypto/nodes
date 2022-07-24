@@ -19,7 +19,6 @@
 project = 'Nodes Migoi Crypto'
 copyright = '2022, TonyXoac'
 author = 'TonyXoac'
-# contact = 'TonyXoac@gmail.com'
 
 # The full version, including alpha/beta/rc tags
 release = 'v1'
