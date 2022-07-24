@@ -10,6 +10,7 @@ Welcome to Nodes Migoi Crypto's documentation!
    archway.md
    subspace.md
    chainflip.md
+   near-stake-wars.md
    :maxdepth: 2
    :caption: Contents:
 
