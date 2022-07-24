@@ -105,10 +105,10 @@ Some useful commands:
 **near proposal list**
 ![near proposals](_static/near/near_proposals.png "near proposal list")
 
-**current near proposal list**
+**current near validators list**
 ![near proposals current](_static/near/near_validators_current.png "near proposal current")
 
-**next near proposal list**
+**next near validators list**
 ![near proposals next](_static/near/near_validators_next.png "near proposal next")
 
 ### II. Challenge 002 
