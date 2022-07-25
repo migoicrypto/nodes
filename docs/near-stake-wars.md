@@ -335,58 +335,81 @@ Setup tools for monitoring node status. Install and use RPC on port 3030 to get 
     **Check delegators and stake**
     ![staking list](_static/near/staking_list.png "staking list")
 
-
-
-
-    
-
 ### V. Challenge 005 
 [Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/005.md)  
-Create your Shardnet wallet & deploy the NEAR CLI. This is designed to be your very first challenge: use it to understand how staking on NEAR works.  
+Setup a running validator node for shardnet on any one of the most popular cloud providers and document the process to create an article about it.  
+- Amazon Web Services (AWS)
+- Google Cloud Platform
+- Microsoft Azure
+- IBM Cloud
+- DigitalOcean
+- Hetzner  
 
 #### 1. Reward & Submission
-- *Rewards: unlocked at the end of Challenge 002.*  
-- *No submission si required for this challenge; it will be evaluated together with the next one (002).*
+- *Rewards: 10 Delegated NEAR Points (DNP).* 
+- Submission: After you finished the challenge, go to this form and submit: https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform  
 
 #### 2. Challenge Step By Step
-- Near CLI Commands.  
-Full list of Near CLI commands: https://github.com/near/near-cli  
-Some useful commands: 
+Firstly, you need go to https://portal.aws.amazon.com/billing/signup#/start/email and create your AWS account.  
+After your AWS account is acctivated, go to https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:, click on launch instance and select some option of AWS instance, then launch a EC2 instance.
+![AWS Instance](_static/near/aws_instance.png "AWS Instance")
+After your instance ready, then following the tutorial from https://nodes.migoi.io/en/latest/near-stake-wars.html#id1 to install your node on AWS.
 
-    ```sh
-    # A proposal by a validator indicates they would like to enter the validator set, in order for a proposal to be accepted it must meet the minimum seat price.
-    near proposals
+- EC2 Instance System Requirements  
+  - Linux distribution: Ubuntu v20.x is referred
+  - 4-Core CPU with AVX support
+  - 8 GB RAM
+  - 500 GB SSD (General Purpose SSD - Storage $0.08/GB-month)
 
-    # This shows a list of active validators in the current epoch, the number of blocks produced, number of blocks expected, and online rate. Used to monitor if a validator is having issues.
-    near validators current
-
-    # This shows validators whose proposal was accepted one epoch ago, and that will enter the validator set in the next epoch.
-    near validators next
-    ```
+- Pricing: ~125$ (EC2 c5.xlarge type) + 40$ (500GB SSD) = **165$ Monthly**
+![AWS Instance](_static/near/aws_pricing.png "AWS Instance")
 
 ### VI. Challenge 006 
-[Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/005.md)  
-Create your Shardnet wallet & deploy the NEAR CLI. This is designed to be your very first challenge: use it to understand how staking on NEAR works.  
+[Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/006.md)  
+Create a cron task on the machine running node validator that allows ping to network automatically.  
 
 #### 1. Reward & Submission
-- *Rewards: unlocked at the end of Challenge 002.*  
-- *No submission si required for this challenge; it will be evaluated together with the next one (002).*
+- *Rewards: 5 Unlocked NEAR Points (UNP)* 
+- Submission: After you finished the challenge, go to this form and submit: https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform  
 
 #### 2. Challenge Step By Step
-- Near CLI Commands.  
-Full list of Near CLI commands: https://github.com/near/near-cli  
-Some useful commands: 
-
+- Create a cron job to run ping every epoch:
     ```sh
-    # A proposal by a validator indicates they would like to enter the validator set, in order for a proposal to be accepted it must meet the minimum seat price.
-    near proposals
-
-    # This shows a list of active validators in the current epoch, the number of blocks produced, number of blocks expected, and online rate. Used to monitor if a validator is having issues.
-    near validators current
-
-    # This shows validators whose proposal was accepted one epoch ago, and that will enter the validator set in the next epoch.
-    near validators next
+    crontab -e 
+    # A ping issues a new proposal and updates the staking balances for your delegators. A ping should be issued each epoch to keep reported rewards current.
+    # Change to pool_id and account_id following yours
+    POOL_ID=tonyxoacsw.factory.shardnet.near  
+    ACCOUNT_ID=tonyxoacsw.shardnet.near  
+    NEAR_ENV=shardnet  
+    # running every 15 minutes:
+    */15 * * * * near call $POOL_ID ping '{}' --accountId $ACCOUNT_ID --gas=300000000000000 >> $HOME/cron.log
     ```
+
 ### VII. Challenge 007 (TBD)
+[Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/007.md)  
+Blockchain is big data. We believe that very interesting data insights could be found out through investigating staking data on NEAR. Please try to find out some valuable data from staking and validators and build a visualized data dashboard for everyone to access.
+
+#### 1. Reward & Submission
+- *Rewards: 20 Delegated NEAR Points (DNP).* 
+- Submission: After you finished the challenge, go to this form and submit: https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform  
+
+#### 2. Challenge Step By Step
+
 ### VIII. Challenge 008  (TBD)
+[Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/008.md)  
+
+#### 1. Reward & Submission
+- *Rewards: 80 Delegated NEAR Points (DNP).* 
+- Submission: After you finished the challenge, go to this form and submit: https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform  
+
+#### 2. Challenge Step By Step
+
 ### IX. Challenge 009  (TBD)
+[Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/009.md)   
+Aurora launched the first staking farm on NEAR early this year and there’s a lot of fun. However there are still some unresolved problems associated with it, such as how to make the APY sustainable, how to make staking farm more decentralized and how one user could earn multiple staking farm rewards at the same time, etc. Please propose an improved staking farm solution which could help to solve some of these challenges.  
+
+#### 1. Reward & Submission
+- *Rewards: 80 Delegated NEAR Points (DNP).* 
+- Submission: After you finished the challenge, go to this form and submit: https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform  
+
+#### 2. Challenge Step By Step
