@@ -37,8 +37,9 @@ Chunk-Only Producers are introduced by reaching Sharding Phase 1, and bring a mo
 
     Note: I am using Ubuntu 20 in this guide so if you are using other OS, please find a alternative commands if needed.
 
-2. After startup your server, then you need to use ssh potocol to access your server. If you don't know how to use ssh, you can refer to use Putty from [this tutorial](https://www.hostinger.com/tutorials/how-to-use-putty-ssh).
+2. After startup your server, then you need to use ssh potocol to access your server. If you don't know how to use ssh, you can refer to use Putty from [this tutorial](https://www.hostinger.com/tutorials/how-to-use-putty-ssh).  
 
+----------
 ## B. STAKE WARS III challenges
 There are 9 [challenges](https://github.com/near/stakewars-iii/blob/main/challenges/challenge-summary.md) at this time.  
 This file contains an overview of the published and draft challenges for Stake Wars. We plan to release new challenges every few days, and this file will be constantly updated to include the new challenges tha are coming up.
@@ -59,9 +60,11 @@ Summary for the point system:
 * Delegated NEAR Points (DNP): at the end of the Stake Wars program, each Delegated NEAR Point (DNP) will be translated into 500 NEAR tokens delegated to your mainnet account for 1 year.
 * Unlocked NEAR Points (UNP): at the end of the Stake Wars program, each Unlocked NEAR Point (UNP) will be translated into 1 unlocked NEAR token, granted to your mainnet account.
 
-Form for Stakewars submissions - Will update when new challenge :): https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform
+Form for Stakewars submissions - Will update when new challenge :): [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform)
 
-We will go through these challenges together then submit the result.
+We will go through these challenges together then submit the result.  
+
+----------
 
 ### I. Challenge 001 
 [Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/001.md)  
@@ -74,7 +77,7 @@ As my experience, you can install Near CLI on the Node that you are planning to 
 
 #### 2. Challenge Step By Step
 - Create NEAR Wallet:  
-Go to https://wallet.shardnet.near.org/, click **Create Account** button, input the name of your account into Account ID text box.  
+Go to [https://wallet.shardnet.near.org/](https://wallet.shardnet.near.org/), click **Create Account** button, input the name of your account into Account ID text box.  
 Then click **Reserve My Account ID** button, select **Secure Passphrase** and click Continue button. Now you need to backout the 12 seed words (passpharse).   
 Now input word as request to verify the account.  
 Finally, you will get your near account. We will need this account to use in challenge 002.  
@@ -108,7 +111,7 @@ Seedphrase: WORD1-..-....-..-WORD12
     echo 'export NEAR_ENV=shardnet' >> ~/.bashrc && source .bashrc
     ```
 - Near CLI Commands.  
-Full list of Near CLI commands: https://github.com/near/near-cli  
+Full list of Near CLI commands: [https://github.com/near/near-cli](https://github.com/near/near-cli)  
 Some useful commands: 
 
     ```sh
@@ -129,8 +132,9 @@ Some useful commands:
 ![near proposals current](_static/near/near_validators_current.png "near proposal current")
 
 **next near validators list**
-![near proposals next](_static/near/near_validators_next.png "near proposal next")
+![near proposals next](_static/near/near_validators_next.png "near proposal next")  
 
+----------
 
 ### II. Challenge 002 
 [Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/002.md)  
@@ -271,7 +275,9 @@ System Requirements
     "secret_key":"ed25519:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
     }
     
-    ```
+    ```  
+
+----------
 
 ### II. Challenge 003 
 [Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/003.md)  
@@ -307,7 +313,9 @@ For better clarity, we’ll provide examples for these parameters:
     A ping issues a new proposal and updates the staking balances for your delegators. A ping should be issued each epoch to keep reported rewards current
     ```sh
     near call <pool_id> ping '{}' --accountId <account_id> --gas=300000000000000
-    ```
+    ```  
+
+----------
 
 ### IV. Challenge 004 
 [Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/004.md)  
@@ -333,7 +341,9 @@ Setup tools for monitoring node status. Install and use RPC on port 3030 to get 
     curl -s -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application/json' http://localhost:3030/ | jq -c '.result.current_validators[] | select(.account_id | contains ("tonyxoacsw.factory.shardnet.near"))'
     ```
     **Check delegators and stake**
-    ![staking list](_static/near/staking_list.png "staking list")
+    ![staking list](_static/near/staking_list.png "staking list")  
+
+----------
 
 ### V. Challenge 005 
 [Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/005.md)  
@@ -347,13 +357,13 @@ Setup a running validator node for shardnet on any one of the most popular cloud
 
 #### 1. Reward & Submission
 - *Rewards: 10 Delegated NEAR Points (DNP).* 
-- Submission: After you finished the challenge, go to this form and submit: https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform  
+- Submission: After you finished the challenge, go to this form and submit: [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform)  
 
 #### 2. Challenge Step By Step
 Firstly, you need go to https://portal.aws.amazon.com/billing/signup#/start/email and create your AWS account.  
-After your AWS account is acctivated, go to https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:, click on launch instance and select some option of AWS instance, then launch a EC2 instance.
+After your AWS account is acctivated, go to [https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:](https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:), click on launch instance and select some option of AWS instance, then launch a EC2 instance.
 ![AWS Instance](_static/near/aws_instance.png "AWS Instance")
-After your instance ready, then following the tutorial from https://nodes.migoi.io/en/latest/near-stake-wars.html#id1 to install your node on AWS.
+After your instance ready, then following the tutorial from [https://nodes.migoi.io/en/latest/near-stake-wars.html#id1](https://nodes.migoi.io/en/latest/near-stake-wars.html#id1) to install your node on AWS.
 
 - EC2 Instance System Requirements  
   - Linux distribution: Ubuntu v20.x is referred
@@ -362,7 +372,9 @@ After your instance ready, then following the tutorial from https://nodes.migoi.
   - 500 GB SSD (General Purpose SSD - Storage $0.08/GB-month)
 
 - Pricing: ~125$ (EC2 c5.xlarge type) + 40$ (500GB SSD) = **165$ Monthly**
-![AWS Instance](_static/near/aws_pricing.png "AWS Instance")
+![AWS Instance](_static/near/aws_pricing.png "AWS Instance")  
+
+----------
 
 ### VI. Challenge 006 
 [Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/006.md)  
@@ -370,7 +382,7 @@ Create a cron task on the machine running node validator that allows ping to net
 
 #### 1. Reward & Submission
 - *Rewards: 5 Unlocked NEAR Points (UNP)* 
-- Submission: After you finished the challenge, go to this form and submit: https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform  
+- Submission: After you finished the challenge, go to this form and submit: [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform)  
 
 #### 2. Challenge Step By Step
 - Create a cron job to run ping every epoch:
@@ -383,7 +395,9 @@ Create a cron task on the machine running node validator that allows ping to net
     NEAR_ENV=shardnet  
     # running every 15 minutes:
     */15 * * * * near call $POOL_ID ping '{}' --accountId $ACCOUNT_ID --gas=300000000000000 >> $HOME/cron.log
-    ```
+    ```  
+
+----------
 
 ### VII. Challenge 007 (TBD)
 [Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/007.md)  
@@ -391,18 +405,22 @@ Blockchain is big data. We believe that very interesting data insights could be 
 
 #### 1. Reward & Submission
 - *Rewards: 20 Delegated NEAR Points (DNP).* 
-- Submission: After you finished the challenge, go to this form and submit: https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform  
+- Submission: After you finished the challenge, go to this form and submit: [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform)  
 
-#### 2. Challenge Step By Step
+#### 2. Challenge Step By Step  
+
+----------
 
 ### VIII. Challenge 008  (TBD)
 [Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/008.md)  
 
 #### 1. Reward & Submission
 - *Rewards: 80 Delegated NEAR Points (DNP).* 
-- Submission: After you finished the challenge, go to this form and submit: https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform  
+- Submission: After you finished the challenge, go to this form and submit: [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform)  
 
-#### 2. Challenge Step By Step
+#### 2. Challenge Step By Step  
+
+----------
 
 ### IX. Challenge 009  (TBD)
 [Ogirinal Document](https://github.com/near/stakewars-iii/blob/main/challenges/009.md)   
@@ -410,6 +428,6 @@ Aurora launched the first staking farm on NEAR early this year and there’s a l
 
 #### 1. Reward & Submission
 - *Rewards: 80 Delegated NEAR Points (DNP).* 
-- Submission: After you finished the challenge, go to this form and submit: https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform  
+- Submission: After you finished the challenge, go to this form and submit: [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform)  
 
 #### 2. Challenge Step By Step
