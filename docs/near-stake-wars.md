@@ -396,7 +396,11 @@ Create a cron task on the machine running node validator that allows ping to net
     # running every 15 minutes:
     */15 * * * * near call $POOL_ID ping '{}' --accountId $ACCOUNT_ID --gas=300000000000000 >> $HOME/cron.log
     ```  
-
+    **CronTab**
+    ![Cronjob](_static/near/crontab.png "Cronjob")  
+    
+    **Pings**
+    ![Pings](_static/near/pings.png "Pings")  
 ----------
 
 ### VII. Challenge 007 (TBD)
